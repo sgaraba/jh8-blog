@@ -42,10 +42,21 @@
                 <span jhiTranslate="global.menu.entities.main">Entități</span>
               </span>
             </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-              <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-            </ul>
-          </li>
+            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/admin/tag-management" routerLinkActive="active" (click)="collapseNavbar()">
+                <fa-icon icon="tag" [fixedWidth]="true"></fa-icon>
+                <span>Tags</span>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/admin/metrics" routerLinkActive="active" (click)="collapseNavbar()">
+                <fa-icon icon="file" [fixedWidth]="true"></fa-icon>
+                <span>Blog</span>
+              </a>
+            </li>
+        </ul>
+        </li>
         }
         <li
           *jhiHasAnyAuthority="'ROLE_ADMIN'"

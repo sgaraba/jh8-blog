@@ -8,6 +8,11 @@ const routes: Routes = [
     title: 'userManagement.home.title',
   },
   {
+    path: 'tag-management',
+    loadChildren: () => import('./blog-management/blog-management.route'),
+    title: 'blogManagement.home.title',
+  },
+  {
     path: 'docs',
     loadComponent: () => import('./docs/docs.component'),
     title: 'global.menu.admin.apidocs',
