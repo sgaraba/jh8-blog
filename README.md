@@ -117,6 +117,8 @@ To build the final jar and optimize the jh8 application for production, run:
 
 ```
 ./mvnw -Pprod clean verify
+
+.\mvnw.cmd -Pdev clean package -DskipTests=true
 ```
 
 This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
@@ -124,6 +126,8 @@ To ensure everything worked, run:
 
 ```
 java -jar target/*.jar
+
+java -jar target\jh-8-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
