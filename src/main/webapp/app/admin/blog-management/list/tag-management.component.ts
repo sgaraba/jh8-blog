@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
-import {Tag} from "../../blog-management.model";
-import {Account} from "../../../../core/auth/account.model";
-import {ITEMS_PER_PAGE} from "../../../../config/pagination.constants";
-import {TagManagementService} from "../../service/tag-management.service";
-import {AccountService} from "../../../../core/auth/account.service";
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {Tag} from "../blog-management.model";
+import {Account} from "../../../core/auth/account.model";
+import {ITEMS_PER_PAGE} from "../../../config/pagination.constants";
+import {TagManagementService} from "../service/tag-management.service";
+import {AccountService} from "../../../core/auth/account.service";
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {ASC, DESC, SORT} from "../../../../config/navigation.constants";
+import {ASC, DESC, SORT} from "../../../config/navigation.constants";
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { combineLatest } from 'rxjs';
 import UserManagementDeleteDialogComponent
-  from "../../../user-management/delete/user-management-delete-dialog.component";
+  from "../../user-management/delete/user-management-delete-dialog.component";
+import SharedModule from "../../../shared/shared.module";
+import {SortByDirective, SortDirective} from "../../../shared/sort";
+import {ItemCountComponent} from "../../../shared/pagination";
+import {User} from "../../user-management/user-management.model";
+import {TagManagementDeleteComponent} from "../delete/tag-management-delete.component";
 
 
 @Component({
   selector: 'jhi-tag-management',
   standalone: true,
-  imports: [],
+  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent],
   templateUrl: './tag-management.component.html',
   styleUrl: './tag-management.component.scss'
 })
-export class TagManagementComponent {
+export default class TagManagementComponent implements OnInit {
   tags: Tag[] | null = null;
   isLoading = false;
   currentAccount: Account | null = null;
@@ -74,13 +79,27 @@ export class TagManagementComponent {
   }
 
   deleteTag(tag:Tag): void {
-    const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static'});
+    const modalRef = this.modalService.open(TagManagementDeleteComponent, { size: 'lg', backdrop: 'static'});
     modalRef.componentInstance.tag = tag;
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
         this.loadAll();
       }
     })
+  }
+
+  transition(): void {
+    this.router.navigate(['./'], {
+      relativeTo: this.activatedRoute.parent,
+      queryParams: {
+        page: this.page,
+        sort: `${this.predicate},${this.ascending ? ASC : DESC}`,
+      }
+    });
+  }
+
+  trackIdentity(_index: number, item: Tag): number {
+    return item.id!;
   }
 
   private handleNavigation(): void {

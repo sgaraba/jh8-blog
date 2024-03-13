@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" (ngSubmit)="save()" [formGroup]="editForm">
+      <h2>Create or edit tag</h2>
+
+      <jhi-alert-error> </jhi-alert-error>
+
+      <div class="mb-3" [hidden]="!editForm.value.id">
+        <label>ID</label>
+        <input type="text" class="form-control" name="id" formControlName="id" readonly/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" formControlName="name" />
+
+        @if(editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)) {
+          <div>
+            @if (editForm.get('name')?.errors?.maxlength) {
+               <small class="form-text text-danger" translateValues="{ max: 40 }"
+               >Acest câmp nu poate fi mai lung de 20 caractere.</small>
+            }
+          </div>
+        }
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="previousState()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span>Anulare</span>
+      </button>
+
+      <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+        <fa-icon icon="save"></fa-icon>&nbsp;<span>Salvare</span>
+      </button>
+    </form>
+  </div>
+</div>
