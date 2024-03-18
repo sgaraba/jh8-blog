@@ -5,7 +5,6 @@ import { SortByDirective, SortDirective } from '../../../shared/sort';
 import { ItemCountComponent } from '../../../shared/pagination';
 import { Blog } from '../blogResource-management.model';
 import { Account } from '../../../core/auth/account.model';
-import { ITEMS_PER_PAGE } from '../../../config/pagination.constants';
 import { BlogManagementService } from '../service/blog-management.service';
 import { AccountService } from '../../../core/auth/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,11 +12,13 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ASC, DESC, SORT } from '../../../config/navigation.constants';
 import { combineLatest } from 'rxjs';
 import { BlogManagementDeleteComponent } from '../delete/blog-management-delete.component';
+import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'jhi-list',
   standalone: true,
-  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent],
+  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent, NgDynamicBreadcrumbComponent, ReactiveFormsModule, FormsModule],
   templateUrl: './blog-management.component.html',
   styleUrl: './blog-management.component.scss'
 })
@@ -26,7 +27,8 @@ export default class BlogManagementComponent implements OnInit {
   isLoading = false;
   currentAccount: Account | null = null;
   totalItems = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
+  itemsPerPage: number = 10;
+  itemsPerPageOptions: number[] = [10, 25, 50];
   page!: number;
   predicate!: string;
   ascending!: boolean;
@@ -56,6 +58,11 @@ export default class BlogManagementComponent implements OnInit {
       result.push('id');
     }
     return result;
+  }
+
+  updatePageSize() {
+    this.itemsPerPage = Number((document.getElementById('itemsPerPageSelect') as HTMLSelectElement).value);
+    this.loadAll();
   }
 
   loadAll(): void {

@@ -4,6 +4,7 @@ import SharedModule from '../../../shared/shared.module';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BlogManagementService } from '../service/blog-management.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
 
 const blogTemplate: IBlog = {} as IBlog;
 const newBlog: IBlog = {} as IBlog;
@@ -11,22 +12,23 @@ const newBlog: IBlog = {} as IBlog;
 @Component({
   selector: 'jhi-update',
   standalone: true,
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgDynamicBreadcrumbComponent],
   templateUrl: './blog-management-update.component.html',
   styleUrl: './blog-management-update.component.scss'
 })
-export default class BlogManagementUpdateComponent implements OnInit{
+export default class BlogManagementUpdateComponent implements OnInit {
   authorities: string[] = [];
   isSaving = false;
 
   editForm = new FormGroup({
     id: new FormControl(blogTemplate.id),
-    name: new FormControl(blogTemplate.name, {validators: [Validators.maxLength(40)]}),
+    name: new FormControl(blogTemplate.name, { validators: [Validators.maxLength(40)] }),
     handle: new FormControl(blogTemplate.handle),
     user: new FormControl<null | { login: string }>(null)
   });
 
-  userValue: User = {login:''};
+  userValue: User = { login: '' };
+
   constructor(
     private blogService: BlogManagementService,
     private route: ActivatedRoute
@@ -42,8 +44,8 @@ export default class BlogManagementUpdateComponent implements OnInit{
       this.editForm.get('user')!.setValue(this.userValue);
     }
 
-    this.route.data.subscribe(({blog}) => {
-      if(blog) {
+    this.route.data.subscribe(({ blog }) => {
+      if (blog) {
         this.editForm.reset(blog);
       } else {
         this.editForm.reset(blog);
@@ -51,7 +53,7 @@ export default class BlogManagementUpdateComponent implements OnInit{
     });
   }
 
-  previousState() : void {
+  previousState(): void {
     window.history.back();
   }
 
@@ -61,13 +63,13 @@ export default class BlogManagementUpdateComponent implements OnInit{
     if (blog.id !== null) {
       this.blogService.update(blog).subscribe({
         next: () => this.onSaveSuccess(),
-        error: () => this.onSaveError(),
+        error: () => this.onSaveError()
       });
-    } else{
+    } else {
       this.blogService.create(blog).subscribe({
         next: () => this.onSaveSuccess(),
-        error: () => this.onSaveError(),
-      })
+        error: () => this.onSaveError()
+      });
     }
   }
 

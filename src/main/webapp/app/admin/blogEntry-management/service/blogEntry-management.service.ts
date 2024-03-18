@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { BlogEntry, IBlogEntry } from '../blogEntry-management.model';
 import { Pagination } from '../../../core/request/request.model';
 import { createRequestOption } from '../../../core/request/request-util';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,14 @@ export class BlogEntryManagementService {
 
   create(blogEntry: BlogEntry): Observable<BlogEntry> {
     return this.http.post<BlogEntry>(this.resourceUrl, blogEntry);
+  }
+
+  delete(id: number): Observable<{}> {
+    return this.http.delete(`${this.resourceUrl}/${id}`);
+  }
+
+  find(id: string): Observable<IBlogEntry> {
+    return this.http.get<IBlogEntry>(`${this.resourceUrl}/${id}`).pipe(
+      tap((result) => console.log('Result:', result)));
   }
 }

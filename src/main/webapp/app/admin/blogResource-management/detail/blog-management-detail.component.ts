@@ -7,11 +7,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   BlogEntryManagementCreateComponent
 } from '../../blogEntry-management/createModal/blog-entry-management-create.component';
+import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
 
 @Component({
   selector: 'jhi-list',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, NgDynamicBreadcrumbComponent],
   templateUrl: './blog-management-detail.component.html',
   styleUrl: './blog-management-detail.component.scss'
 })

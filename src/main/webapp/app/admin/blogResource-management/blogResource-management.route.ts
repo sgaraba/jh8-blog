@@ -1,6 +1,5 @@
 import { ActivatedRouteSnapshot, ResolveFn, Routes } from '@angular/router';
 import { IBlog } from './blogResource-management.model';
-import { TagManagementService } from '../blog-management/service/tag-management.service';
 import { inject } from '@angular/core';
 import { of } from 'rxjs';
 import BlogManagementComponent from './list/blog-management.component';
@@ -16,35 +15,78 @@ export const BlogResourceManagementResolve: ResolveFn<IBlog | null> = (route: Ac
   return of(null);
 };
 
-const blogResourceManagementRoute : Routes = [
+const blogResourceManagementRoute: Routes = [
   {
     path: '',
     component: BlogManagementComponent,
     data: {
       defaultSort: 'id,asc',
-    },
+      breadcrumb: [
+        {
+          label: 'Blogs',
+          url: ''
+        }
+      ]
+    }
+
   },
   {
     path: ':id/view',
     component: BlogManagementDetailComponent,
     resolve: {
-      blog: BlogResourceManagementResolve,
+      blog: BlogResourceManagementResolve
+    },
+    data: {
+      breadcrumb: [
+        {
+          label: 'Blogs',
+          url: '../../'
+        },
+        {
+          label: 'Blog view',
+          url: ''
+        }
+      ]
     }
   },
   {
     path: 'new',
     component: BlogManagementUpdateComponent,
     resolve: {
-      blog: BlogResourceManagementResolve,
+      blog: BlogResourceManagementResolve
+    },
+    data: {
+      breadcrumb: [
+        {
+          label: 'Blogs',
+          url: '../'
+        },
+        {
+          label: 'Create blog',
+          url: ''
+        }
+      ]
     }
   },
   {
     path: ':id/edit',
     component: BlogManagementUpdateComponent,
     resolve: {
-      blog: BlogResourceManagementResolve,
+      blog: BlogResourceManagementResolve
+    },
+    data: {
+      breadcrumb: [
+        {
+          label: 'Blogs',
+          url: '../../'
+        },
+        {
+          label: 'Blog update',
+          url: ''
+        }
+      ]
     }
   }
-]
+];
 
 export default blogResourceManagementRoute;

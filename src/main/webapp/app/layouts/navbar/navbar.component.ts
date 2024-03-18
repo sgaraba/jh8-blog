@@ -14,13 +14,14 @@ import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import ActiveMenuDirective from './active-menu.directive';
 import NavbarItem from './navbar-item.model';
+import { NgDynamicBreadcrumbComponent } from '../../lib/ng-dynamic-breadcrumb.component';
 
 @Component({
   standalone: true,
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
-  imports: [RouterModule, SharedModule, HasAnyAuthorityDirective, ActiveMenuDirective],
+  imports: [RouterModule, SharedModule, HasAnyAuthorityDirective, ActiveMenuDirective, NgDynamicBreadcrumbComponent]
 })
 export default class NavbarComponent implements OnInit {
   inProduction?: boolean;
@@ -37,7 +38,7 @@ export default class NavbarComponent implements OnInit {
     private stateStorageService: StateStorageService,
     private accountService: AccountService,
     private profileService: ProfileService,
-    private router: Router,
+    private router: Router
   ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;

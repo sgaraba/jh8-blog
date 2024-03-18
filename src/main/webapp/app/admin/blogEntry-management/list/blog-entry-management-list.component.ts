@@ -12,11 +12,13 @@ import { combineLatest, last } from 'rxjs';
 import { ASC, DESC, SORT } from '../../../config/navigation.constants';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
+import { BlogEntryDeleteComponent } from '../delete/blog-entry-delete.component';
 
 @Component({
   selector: 'jhi-list',
   standalone: true,
-  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent, FormsModule],
+  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent, FormsModule, NgDynamicBreadcrumbComponent],
   templateUrl: './blog-entry-management-list.component.html',
   styleUrl: './blog-entry-management-list.component.scss'
 })
@@ -103,6 +105,16 @@ export default class BlogEntryManagementListComponent implements OnInit {
 
   trackIdentity(_index: number, item: BlogEntry): number {
     return item.id!;
+  }
+
+  deleteTag(blogEntry: BlogEntry): void {
+    const modalRef = this.modalService.open(BlogEntryDeleteComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.blogEntry = blogEntry;
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.loadAll();
+      }
+    });
   }
 
   protected readonly last = last;

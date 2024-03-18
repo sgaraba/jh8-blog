@@ -1,4 +1,8 @@
 <div>
+
+  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+                             [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
+
   <h2>
     <span id="tag-management-page-heading">Blogs</span>
 
@@ -8,8 +12,14 @@
         <span>Refresh list</span>
       </button>
       <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
-        <fa-icon icon="plus"></fa-icon><span> Create new blog</span>
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create new blog</span>
       </button>
+
+      <label for="itemsPerPageSelect">Items per page:</label>
+      <select id="itemsPerPageSelect" (change)="updatePageSize()" [ngModel]="itemsPerPage">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
   </h2>
 
@@ -22,9 +32,15 @@
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="name"><span>Handle</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="name"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span>Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name"><span>Handle</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="name"><span>User</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
         </thead>
@@ -36,8 +52,8 @@
                 <td>
                   <a [routerLink]="['./',blog.id, 'view']">{{ blog.name }}</a>
                 </td>
-                <td>{{blog.handle}}</td>
-                <td>{{blog.user?.login}}</td>
+                <td>{{ blog.handle }}</td>
+                <td>{{ blog.user?.login }}</td>
                 <td class="text-end">
                   <div class="btn-group">
                     <button
@@ -55,7 +71,7 @@
                       (click)="deleteBlog(blog)"
                       class="btn btn-danger btn-sm"
                     >
-                      <fa-icon icon="times"> </fa-icon>
+                      <fa-icon icon="times"></fa-icon>
                       <span class="d-none d-md-inline">Delete</span>
                     </button>
                   </div>

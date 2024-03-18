@@ -1,29 +1,42 @@
-<div class="d-flex justify-content-center">
-  @if (blog) {
-    <div class="col-6">
+<div class="justify-content-center">
+
+  <div class="row">
+    <div class="col">
+      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+                                 [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
       <h2>
         <span>Blog</span>
       </h2>
 
-      <dl class="row-md jh-entity-details">
-        <dt><span>Id</span></dt>
-        <dd>{{ blog.id }}</dd>
 
-        <dt><span>Name</span></dt>
-        <dd>{{ blog.name }}</dd>
+      @if (blog) {
 
-        <dt><span>Entries</span></dt>
-        <dd>{{ blog.handle }}</dd>
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>{{ blog.id }}</dd>
 
-        <dt><span>User</span></dt>
-        <dd>{{ blog.user?.login }}</dd>
-      </dl>
-      <div class="row-md d-flex justify-content-end">
-        <button type="button" class="btn btn-info align-content-end" (click)="createBlogEntry(blog)">
-          <fa-icon icon="plus"></fa-icon>
-          <span class="px-2">Adaugă postare</span>
-        </button>
-      </div>
+          <dt><span>Name</span></dt>
+          <dd>{{ blog.name }}</dd>
+
+          <dt><span>Entries</span></dt>
+          <dd>{{ blog.handle }}</dd>
+
+          <dt><span>User</span></dt>
+          <dd>{{ blog.user?.login }}</dd>
+        </dl>
+        <div class="row-md d-flex justify-content-end">
+          <button type="button" class="btn btn-info align-content-end" (click)="createBlogEntry(blog)">
+            <fa-icon icon="plus"></fa-icon>
+            <span class="px-2">Adaugă postare</span>
+          </button>
+        </div>
+
+      }
     </div>
-  }
+  </div>
 </div>

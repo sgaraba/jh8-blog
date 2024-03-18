@@ -1,6 +1,11 @@
 <div>
+
+  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+                             [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
+
   <h2>
     <span id="tag-management-page-heading">Tags</span>
+
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
@@ -8,8 +13,14 @@
         <span>Refresh list</span>
       </button>
       <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
-        <fa-icon icon="plus"></fa-icon><span> Create new tag</span>
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create new tag</span>
       </button>
+
+      <label for="itemsPerPageSelect">Items per page:</label>
+      <select id="itemsPerPageSelect" (change)="updatePageSize()" [ngModel]="itemsPerPage">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+      </select>
     </div>
   </h2>
 
@@ -21,10 +32,12 @@
     <div class="table-responsive">
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
-           <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-            <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
-            <th scope="col"></th>
-          </tr>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
+          <th scope="col" jhiSortBy="name"><span>Name</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
         </thead>
 
         @if (tags) {
@@ -32,7 +45,7 @@
             @for (tag of tags; track trackIdentity) {
               <tr>
                 <td>
-                  <a [routerLink]="['./',tag.id, 'view']">{{tag.name}}</a>
+                  <a [routerLink]="['./',tag.id, 'view']">{{ tag.name }}</a>
                 </td>
                 <td class="text-end">
                   <div class="btn-group">
@@ -51,7 +64,7 @@
                       (click)="deleteTag(tag)"
                       class="btn btn-danger btn-sm"
                     >
-                      <fa-icon icon="times"> </fa-icon>
+                      <fa-icon icon="times"></fa-icon>
                       <span class="d-none d-md-inline">Delete</span>
                     </button>
                   </div>

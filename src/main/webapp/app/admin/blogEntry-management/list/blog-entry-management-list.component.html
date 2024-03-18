@@ -1,8 +1,8 @@
 <div>
+  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+                             [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
   <h2>
     <span id="blog-entry-management-page-heading">Blog-Entries</span>
-
-    
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
@@ -19,16 +19,22 @@
   <jhi-alert-error></jhi-alert-error>
   <jhi-alert></jhi-alert>
 
+
   @if (blogEntries) {
     <div class="table-responsive">
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="title"><span>Title</span></th>
+          <th scope="col" jhiSortBy="title"><span>Title</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col" jhiSortBy="content"><span>Content</span></th>
-          <th scope="col" jhiSortBy="date"><span>Date</span></th>
+          <th scope="col" jhiSortBy="date"><span>Date</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"><span>Blog</span></th>
           <th scope="col"><span>Tags</span></th>
+          <th scope="col"></th>
         </tr>
         </thead>
 
@@ -37,7 +43,7 @@
             @for (blogEntry of blogEntries; track trackIdentity) {
               <tr>
                 <td>
-                  {{ blogEntry.title }}
+                  <a [routerLink]="['./', blogEntry.id, 'view']">{{ blogEntry.title }}</a>
                 </td>
                 <td>{{ blogEntry.content }}</td>
                 <td>{{ blogEntry.date }}</td>
@@ -50,6 +56,18 @@
                      </span>
                   </ng-container>
                   <ng-template #noTags>null</ng-template>
+                </td>
+                <td class="col-md-1">
+                  <div class="btn-group">
+                    <button
+                      type="button"
+                      (click)="deleteTag(blogEntry)"
+                      class="btn btn-danger btn-sm"
+                    >
+                      <fa-icon icon="times"></fa-icon>
+                      <span class="d-none d-md-inline">Delete</span>
+                    </button>
+                  </div>
                 </td>
               </tr>
             }

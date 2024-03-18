@@ -1,0 +1,50 @@
+<div class="justify-content-center container">
+  <div class="row">
+    <div class="col">
+      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'"
+                                 [lastLinkColor]="'#000'"
+                                 [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>
+        <span>Blog-entry</span>
+      </h2>
+
+      @if (blogEntry) {
+        <div>
+          <dl class="row-md jh-entity-details">
+            <dt><span>Id</span></dt>
+            <dd>{{ blogEntry.id }}</dd>
+
+            <dt><span>Title</span></dt>
+            <dd>{{ blogEntry.title }}</dd>
+
+            <dt><span>Content</span></dt>
+            <dd>{{ blogEntry.content }}</dd>
+
+            <dt><span>Blog</span></dt>
+            <dd>{{ blogEntry.blog?.name }}</dd>
+
+            <dt><span>Tags</span></dt>
+            <dd>
+              <ng-container *ngIf="blogEntry.tags && blogEntry.tags.length > 0; else noTags">
+                    <span *ngFor="let tag of blogEntry.tags; let i = index">
+                     {{ tag.name }}
+                      <span *ngIf="i !== blogEntry.tags.length - 1">, </span>
+                     </span>
+              </ng-container>
+              <ng-template #noTags>null</ng-template>
+            </dd>
+
+            <dt><span>Date</span></dt>
+            <dd>{{ blogEntry.date }}</dd>
+          </dl>
+
+        </div>
+      }
+    </div>
+  </div>
+
+</div>

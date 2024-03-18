@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import SharedModule from "../../../shared/shared.module";
-import {ITag} from "../blog-management.model";
-import {TagManagementService} from "../service/tag-management.service";
+import SharedModule from '../../../shared/shared.module';
+import { ITag } from '../blog-management.model';
+import { TagManagementService } from '../service/tag-management.service';
+import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
 
 const tagTemplate = {} as ITag;
 const newTag: ITag = {} as ITag;
@@ -12,28 +13,29 @@ const newTag: ITag = {} as ITag;
 @Component({
   selector: 'jhi-update',
   standalone: true,
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgDynamicBreadcrumbComponent],
   templateUrl: './tag-management-update.component.html',
   styleUrl: './tag-management-update.component.scss'
 })
-export default class TagManagementUpdateComponent implements OnInit{
+export default class TagManagementUpdateComponent implements OnInit {
   authorities: string[] = [];
   isSaving = false;
 
   editForm = new FormGroup({
     id: new FormControl(tagTemplate.id),
-    name: new FormControl(tagTemplate.name, {validators: [Validators.maxLength(40)]}),
-    entries: new FormControl(tagTemplate.entries),
+    name: new FormControl(tagTemplate.name, { validators: [Validators.maxLength(40)] }),
+    entries: new FormControl(tagTemplate.entries)
   });
 
   constructor(
     private tagService: TagManagementService,
-    private route: ActivatedRoute,
-  ) {}
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({tag}) => {
-      if(tag) {
+    this.route.data.subscribe(({ tag }) => {
+      if (tag) {
         this.editForm.reset(tag);
       } else {
         this.editForm.reset(newTag);
@@ -41,7 +43,7 @@ export default class TagManagementUpdateComponent implements OnInit{
     });
   }
 
-  previousState() : void {
+  previousState(): void {
     window.history.back();
   }
 
@@ -51,13 +53,13 @@ export default class TagManagementUpdateComponent implements OnInit{
     if (tag.id !== null) {
       this.tagService.update(tag).subscribe({
         next: () => this.onSaveSuccess(),
-        error: () => this.onSaveError(),
+        error: () => this.onSaveError()
       });
-    } else{
+    } else {
       this.tagService.create(tag).subscribe({
         next: () => this.onSaveSuccess(),
-        error: () => this.onSaveError(),
-      })
+        error: () => this.onSaveError()
+      });
     }
   }
 
