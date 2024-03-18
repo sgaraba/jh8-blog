@@ -6,7 +6,6 @@ import { of } from 'rxjs';
 import TagManagementComponent from "./list/tag-management.component";
 import {TagManagementDetailComponent} from "./detail/tag-management-detail.component";
 import {TagManagementService} from "./service/tag-management.service";
-import UserManagementUpdateComponent from "../user-management/update/user-management-update.component";
 import TagManagementUpdateComponent from "./update/tag-management-update.component";
 
 export const BlogManagementResolve: ResolveFn<ITag | null> = (route: ActivatedRouteSnapshot) => {

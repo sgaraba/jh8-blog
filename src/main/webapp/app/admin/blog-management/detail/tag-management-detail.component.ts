@@ -4,7 +4,7 @@ import SharedModule from "../../../shared/shared.module";
 import { Tag } from '../blog-management.model';
 
 @Component({
-  selector: 'jhi-tag-management-detail',
+  selector: 'jhi-tag-management-list',
   standalone: true,
   imports: [SharedModule],
   templateUrl: './tag-management-detail.component.html',

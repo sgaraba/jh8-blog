@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center">
+  @if (blog) {
+    <div class="col-6">
+      <h2>
+        <span>Blog</span>
+      </h2>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Id</span></dt>
+        <dd>{{ blog.id }}</dd>
+
+        <dt><span>Name</span></dt>
+        <dd>{{ blog.name }}</dd>
+
+        <dt><span>Entries</span></dt>
+        <dd>{{ blog.handle }}</dd>
+
+        <dt><span>User</span></dt>
+        <dd>{{ blog.user?.login }}</dd>
+      </dl>
+      <div class="row-md d-flex justify-content-end">
+        <button type="button" class="btn btn-info align-content-end" (click)="createBlogEntry(blog)">
+          <fa-icon icon="plus"></fa-icon>
+          <span class="px-2">Adaugă postare</span>
+        </button>
+      </div>
+    </div>
+  }
+</div>

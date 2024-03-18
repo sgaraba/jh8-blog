@@ -1,1 +1,92 @@
-<p>blog-management works!</p>
+<div>
+  <h2>
+    <span id="tag-management-page-heading">Blogs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+      <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
+        <fa-icon icon="plus"></fa-icon><span> Create new blog</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (blogs) {
+    <div class="table-responsive">
+      <table class="table table-striped" aria-describedby="tag-management-page-heading">
+        <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
+          <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span>Handle</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+
+        @if (blogs) {
+          <tbody>
+            @for (blog of blogs; track trackIdentity) {
+              <tr>
+                <td>
+                  <a [routerLink]="['./',blog.id, 'view']">{{ blog.name }}</a>
+                </td>
+                <td>{{blog.handle}}</td>
+                <td>{{blog.user?.login}}</td>
+                <td class="text-end">
+                  <div class="btn-group">
+                    <button
+                      type="submit"
+                      [routerLink]="['./', blog.id, 'edit']"
+                      queryParamsHandling="merge"
+                      class="btn btn-primary btn-sm"
+                    >
+                      <fa-icon icon="pencil-alt"></fa-icon>
+                      <span class="d-none d-md-inline">Edit</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      (click)="deleteBlog(blog)"
+                      class="btn btn-danger btn-sm"
+                    >
+                      <fa-icon icon="times"> </fa-icon>
+                      <span class="d-none d-md-inline">Delete</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        }
+      </table>
+    </div>
+  }
+
+  @if (blogs) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{page: page, totalItems: totalItems, itemsPerPage: itemsPerPage}"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="transition()"
+        >
+        </ngb-pagination>
+      </div>
+    </div>
+  }
+
+</div>

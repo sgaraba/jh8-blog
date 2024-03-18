@@ -22,7 +22,6 @@
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-            <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
             <th scope="col" jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
             <th scope="col"></th>
           </tr>
@@ -33,16 +32,10 @@
             @for (tag of tags; track trackIdentity) {
               <tr>
                 <td>
-                  <a [routerLink]="['./',tag.id, 'view']">{{ tag.id }}</a>
+                  <a [routerLink]="['./',tag.id, 'view']">{{tag.name}}</a>
                 </td>
-                <td>{{tag.name}}</td>
                 <td class="text-end">
                   <div class="btn-group">
-                    <button type="submit" [routerLink]="['./', tag.id, 'view']" class="btn btn-info btn-sm">
-                      <fa-icon icon="eye"> </fa-icon>
-                      <span class="d-none d-md-inline">View</span>
-                    </button>
-
                     <button
                       type="submit"
                       [routerLink]="['./', tag.id, 'edit']"

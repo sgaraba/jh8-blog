@@ -13,6 +13,16 @@ const routes: Routes = [
     title: 'blogManagement.home.title',
   },
   {
+    path:'blog-management',
+    loadChildren: () => import('./blogResource-management/blogResource-management.route'),
+    title: 'blogResourceManagement.home.title'
+  },
+  {
+    path:'blog-entry-management',
+    loadChildren: () => import('./blogEntry-management/blogEntry-management.route'),
+    title: 'blogEntriesResourceManagement.home.title'
+  },
+  {
     path: 'docs',
     loadComponent: () => import('./docs/docs.component'),
     title: 'global.menu.admin.apidocs',

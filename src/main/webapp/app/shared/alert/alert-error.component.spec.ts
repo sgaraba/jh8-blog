@@ -137,7 +137,7 @@ describe('Alert Error Component', () => {
       expect(comp.alerts[0].translationKey).toBe('Error Message');
     });
 
-    it('Should display an alert on status 500 with detail', () => {
+    it('Should display an alert on status 500 with list', () => {
       // GIVEN
       const response = new HttpErrorResponse({
         url: 'http://localhost:8080/api/foos',

@@ -1,38 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import SharedModule from '../../../shared/shared.module';
+import { BlogEntry } from '../blogEntry-management.model';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SortByDirective, SortDirective } from '../../../shared/sort';
 import { ItemCountComponent } from '../../../shared/pagination';
-import { Blog } from '../blogResource-management.model';
 import { Account } from '../../../core/auth/account.model';
-import { ITEMS_PER_PAGE } from '../../../config/pagination.constants';
-import { BlogManagementService } from '../service/blog-management.service';
+import { BlogEntryManagementService } from '../service/blogEntry-management.service';
 import { AccountService } from '../../../core/auth/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { combineLatest, last } from 'rxjs';
 import { ASC, DESC, SORT } from '../../../config/navigation.constants';
-import { combineLatest } from 'rxjs';
-import { BlogManagementDeleteComponent } from '../delete/blog-management-delete.component';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'jhi-list',
   standalone: true,
-  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent],
-  templateUrl: './blog-management.component.html',
-  styleUrl: './blog-management.component.scss'
+  imports: [RouterModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent, FormsModule],
+  templateUrl: './blog-entry-management-list.component.html',
+  styleUrl: './blog-entry-management-list.component.scss'
 })
-export default class BlogManagementComponent implements OnInit {
-  blogs: Blog[] | null = null;
+export default class BlogEntryManagementListComponent implements OnInit {
+  blogEntries: BlogEntry[] | null = null;
   isLoading = false;
   currentAccount: Account | null = null;
   totalItems = 0;
-  itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
   predicate!: string;
   ascending!: boolean;
+  itemsPerPage: number = 10;
+  itemsPerPageOptions: number[] = [10, 25, 50];
 
   constructor(
-    private blogService: BlogManagementService,
+    private blogEntryService: BlogEntryManagementService,
     private accountService: AccountService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -43,60 +43,6 @@ export default class BlogManagementComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     this.handleNavigation();
-  }
-
-  private onSuccess(blogs: Blog[] | null, headers: HttpHeaders): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
-    this.blogs = blogs;
-  }
-
-  private sort(): string[] {
-    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
-  }
-
-  loadAll(): void {
-    this.isLoading = true;
-    this.blogService
-      .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort()
-      })
-      .subscribe({
-        next: (res: HttpResponse<Blog[]>) => {
-          this.isLoading = false;
-          this.onSuccess(res.body, res.headers);
-        },
-        error: () => (this.isLoading = false)
-      });
-  }
-
-  deleteBlog(blog: Blog): void {
-    const modalRef = this.modalService.open(BlogManagementDeleteComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.blog = blog;
-    modalRef.closed.subscribe(reason => {
-      if (reason === 'deleted') {
-        this.loadAll();
-      }
-    });
-  }
-
-  transition(): void {
-    this.router.navigate(['./'], {
-      relativeTo: this.activatedRoute.parent,
-      queryParams: {
-        page: this.page,
-        sort: `${this.predicate},${this.ascending ? ASC : DESC}`
-      }
-    });
-  }
-
-  trackIdentity(_index: number, item: Blog): number {
-    return item.id!;
   }
 
   private handleNavigation(): void {
@@ -110,4 +56,54 @@ export default class BlogManagementComponent implements OnInit {
     });
   }
 
+  private onSuccess(blogEntries: BlogEntry[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.blogEntries = blogEntries;
+  }
+
+  private sort(): string[] {
+    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  loadAll(): void {
+    this.isLoading = true;
+    this.blogEntryService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort()
+      })
+      .subscribe({
+        next: (res: HttpResponse<BlogEntry[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers);
+        },
+        error: () => (this.isLoading = false)
+      });
+  }
+
+  updatePageSize() {
+    this.itemsPerPage = Number((document.getElementById('itemsPerPageSelect') as HTMLSelectElement).value);
+    this.loadAll();
+  }
+
+  transition(): void {
+    this.router.navigate(['./'], {
+      relativeTo: this.activatedRoute.parent,
+      queryParams: {
+        page: this.page,
+        sort: `${this.predicate},${this.ascending ? ASC : DESC}`
+      }
+    });
+  }
+
+  trackIdentity(_index: number, item: BlogEntry): number {
+    return item.id!;
+  }
+
+  protected readonly last = last;
 }

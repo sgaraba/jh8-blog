@@ -1,6 +1,12 @@
-import { ApplicationConfig, LOCALE_ID, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { RouterFeatures, TitleStrategy, provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import {
+  provideRouter,
+  RouterFeatures,
+  TitleStrategy,
+  withComponentInputBinding,
+  withDebugTracing
+} from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -32,7 +38,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'ro' },
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
-    { provide: TitleStrategy, useClass: AppPageTitleStrategy },
+    { provide: TitleStrategy, useClass: AppPageTitleStrategy }
     // jhipster-needle-angular-add-module JHipster will add new module here
-  ],
+  ]
 };

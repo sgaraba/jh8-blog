@@ -1,0 +1,84 @@
+<div>
+  <h2>
+    <span id="blog-entry-management-page-heading">Blog-Entries</span>
+
+    
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <label for="itemsPerPageSelect">Items per page:</label>
+      <select id="itemsPerPageSelect" (change)="updatePageSize()" [ngModel]="itemsPerPage">
+        <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+  <jhi-alert></jhi-alert>
+
+  @if (blogEntries) {
+    <div class="table-responsive">
+      <table class="table table-striped" aria-describedby="tag-management-page-heading">
+        <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
+          <th scope="col" jhiSortBy="title"><span>Title</span></th>
+          <th scope="col" jhiSortBy="content"><span>Content</span></th>
+          <th scope="col" jhiSortBy="date"><span>Date</span></th>
+          <th scope="col"><span>Blog</span></th>
+          <th scope="col"><span>Tags</span></th>
+        </tr>
+        </thead>
+
+        @if (blogEntries) {
+          <tbody>
+            @for (blogEntry of blogEntries; track trackIdentity) {
+              <tr>
+                <td>
+                  {{ blogEntry.title }}
+                </td>
+                <td>{{ blogEntry.content }}</td>
+                <td>{{ blogEntry.date }}</td>
+                <td>{{ blogEntry.blog?.name }}</td>
+                <td>
+                  <ng-container *ngIf="blogEntry.tags && blogEntry.tags.length > 0; else noTags">
+                    <span *ngFor="let tag of blogEntry.tags; let i = index">
+                     {{ tag.name }}
+                      <span *ngIf="i !== blogEntry.tags.length - 1">, </span>
+                     </span>
+                  </ng-container>
+                  <ng-template #noTags>null</ng-template>
+                </td>
+              </tr>
+            }
+          </tbody>
+        }
+
+      </table>
+    </div>
+  }
+
+  @if (blogEntries) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{page: page, totalItems: totalItems, itemsPerPage: itemsPerPage}"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [(page)]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="transition()"
+        >
+        </ngb-pagination>
+      </div>
+    </div>
+  }
+
+</div>
