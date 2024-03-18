@@ -57,17 +57,27 @@
                   </ng-container>
                   <ng-template #noTags>null</ng-template>
                 </td>
-                <td class="col-md-1">
-                  <div class="btn-group">
-                    <button
-                      type="button"
-                      (click)="deleteTag(blogEntry)"
-                      class="btn btn-danger btn-sm"
-                    >
-                      <fa-icon icon="times"></fa-icon>
-                      <span class="d-none d-md-inline">Delete</span>
-                    </button>
-                  </div>
+                <td class="text-end">
+                  <li
+                    ngbDropdown
+                    display="dynamic"
+                  >
+                    <a ngbDropdownToggle>
+                      ...
+                    </a>
+                    <ul ngbDropdownMenu>
+                      <li>
+                        <button
+                          type="button"
+                          (click)="deleteTag(blogEntry)"
+                          class="btn btn-danger btn-sm dropdown-item"
+                        >
+                          <fa-icon icon="times"></fa-icon>
+                          <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </td>
               </tr>
             }

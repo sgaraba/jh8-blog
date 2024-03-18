@@ -6,7 +6,6 @@
   <h2>
     <span id="tag-management-page-heading">Tags</span>
 
-
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
@@ -48,26 +47,38 @@
                   <a [routerLink]="['./',tag.id, 'view']">{{ tag.name }}</a>
                 </td>
                 <td class="text-end">
-                  <div class="btn-group">
-                    <button
-                      type="submit"
-                      [routerLink]="['./', tag.id, 'edit']"
-                      queryParamsHandling="merge"
-                      class="btn btn-primary btn-sm"
-                    >
-                      <fa-icon icon="pencil-alt"></fa-icon>
-                      <span class="d-none d-md-inline">Edit</span>
-                    </button>
+                  <li
+                    ngbDropdown
+                    display="dynamic"
+                  >
+                    <a ngbDropdownToggle>
+                      ...
+                    </a>
+                    <ul ngbDropdownMenu>
+                      <li>
+                        <button
+                          type="submit"
+                          [routerLink]="['./', tag.id, 'edit']"
+                          queryParamsHandling="merge"
+                          class="btn btn-primary btn-sm dropdown-item"
+                        >
+                          <fa-icon icon="pencil-alt"></fa-icon>
+                          <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                      </li>
 
-                    <button
-                      type="button"
-                      (click)="deleteTag(tag)"
-                      class="btn btn-danger btn-sm"
-                    >
-                      <fa-icon icon="times"></fa-icon>
-                      <span class="d-none d-md-inline">Delete</span>
-                    </button>
-                  </div>
+                      <li>
+                        <button
+                          type="button"
+                          (click)="deleteTag(tag)"
+                          class="btn btn-danger btn-sm dropdown-item"
+                        >
+                          <fa-icon icon="times"></fa-icon>
+                          <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
                 </td>
               </tr>
             }

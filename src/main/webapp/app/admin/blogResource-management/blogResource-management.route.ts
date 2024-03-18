@@ -23,6 +23,10 @@ const blogResourceManagementRoute: Routes = [
       defaultSort: 'id,asc',
       breadcrumb: [
         {
+          label: 'Home',
+          url: '../../'
+        },
+        {
           label: 'Blogs',
           url: ''
         }
@@ -38,6 +42,10 @@ const blogResourceManagementRoute: Routes = [
     },
     data: {
       breadcrumb: [
+        {
+          label: 'Home',
+          url: '../../../../'
+        },
         {
           label: 'Blogs',
           url: '../../'
@@ -58,6 +66,10 @@ const blogResourceManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
+          label: 'Home',
+          url: '../../../'
+        },
+        {
           label: 'Blogs',
           url: '../'
         },
@@ -76,6 +88,10 @@ const blogResourceManagementRoute: Routes = [
     },
     data: {
       breadcrumb: [
+        {
+          label: 'Home',
+          url: '../../../../'
+        },
         {
           label: 'Blogs',
           url: '../../'

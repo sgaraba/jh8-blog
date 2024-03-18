@@ -9,3 +9,16 @@ label[for="itemsPerPageSelect"],
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+li {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+a {
+  text-decoration: none !important;
+}

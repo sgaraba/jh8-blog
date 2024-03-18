@@ -34,7 +34,7 @@ export default class NavbarComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private translateService: TranslateService,
+    protected translateService: TranslateService,
     private stateStorageService: StateStorageService,
     private accountService: AccountService,
     private profileService: ProfileService,
@@ -58,6 +58,7 @@ export default class NavbarComponent implements OnInit {
   }
 
   changeLanguage(languageKey: string): void {
+    console.log();
     this.stateStorageService.storeLocale(languageKey);
     this.translateService.use(languageKey);
   }
