@@ -9,7 +9,7 @@ import { BlogManagementService } from '../service/blog-management.service';
 import { AccountService } from '../../../core/auth/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ASC, DESC, SORT } from '../../../config/navigation.constants';
+import { ASC, DESC, ELEMENT_ID, SORT } from '../../../config/navigation.constants';
 import { combineLatest } from 'rxjs';
 import { BlogManagementDeleteComponent } from '../delete/blog-management-delete.component';
 import { NgDynamicBreadcrumbComponent } from '../../../lib/ng-dynamic-breadcrumb.component';
@@ -47,21 +47,8 @@ export default class BlogManagementComponent implements OnInit {
     this.handleNavigation();
   }
 
-  private onSuccess(blogs: Blog[] | null, headers: HttpHeaders): void {
-    this.totalItems = Number(headers.get('X-Total-Count'));
-    this.blogs = blogs;
-  }
-
-  private sort(): string[] {
-    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
-    if (this.predicate !== 'id') {
-      result.push('id');
-    }
-    return result;
-  }
-
-  updatePageSize() {
-    this.itemsPerPage = Number((document.getElementById('itemsPerPageSelect') as HTMLSelectElement).value);
+  updatePageSize(): void {
+    this.itemsPerPage = Number((document.getElementById(ELEMENT_ID) as HTMLSelectElement).value);
     this.loadAll();
   }
 
@@ -82,8 +69,8 @@ export default class BlogManagementComponent implements OnInit {
       });
   }
 
-  deleteBlog(blog: Blog): void {
-    const modalRef = this.modalService.open(BlogManagementDeleteComponent, { size: 'lg', backdrop: 'static' });
+  delete(blog: Blog): void {
+    const modalRef = this.modalService.open(BlogManagementDeleteComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.blog = blog;
     modalRef.closed.subscribe(reason => {
       if (reason === 'deleted') {
@@ -117,4 +104,16 @@ export default class BlogManagementComponent implements OnInit {
     });
   }
 
+  private onSuccess(blogs: Blog[] | null, headers: HttpHeaders): void {
+    this.totalItems = Number(headers.get('X-Total-Count'));
+    this.blogs = blogs;
+  }
+
+  private sort(): string[] {
+    const result = [`${this.predicate},${this.ascending ? ASC : DESC}`];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
 }
