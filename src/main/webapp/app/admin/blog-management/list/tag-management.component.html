@@ -1,22 +1,22 @@
 <div>
 
-  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#533F03'" [lastLinkColor]="'#000'"
                              [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
 
   <h2>
-    <span id="tag-management-page-heading">Tags</span>
+    <span id="tag-management-page-heading" jhiTranslate="tagManagement.home.title">Tags</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span jhiTranslate="tagManagement.home.refreshListLabel">Refresh list</span>
       </button>
       <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
         <fa-icon icon="plus"></fa-icon>
-        <span> Create new tag</span>
+        <span jhiTranslate="tagManagement.home.createLabel"> Create new tag</span>
       </button>
 
-      <label for="itemsPerPageSelect">Items per page:</label>
+      <label for="itemsPerPageSelect" jhiTranslate="tagManagement.home.paginationOptions">Items per page:</label>
       <select id="itemsPerPageSelect" (change)="updatePageSize()" [ngModel]="itemsPerPage">
         <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
       </select>
@@ -32,7 +32,7 @@
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="name"><span>Name</span>
+          <th scope="col" jhiSortBy="name" jhiTranslate="tagManagement.tableOptions.name"><span>Name</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -51,7 +51,7 @@
                     ngbDropdown
                     display="dynamic"
                   >
-                    <a ngbDropdownToggle>
+                    <a ngbDropdownToggle class="aSimple">
                       ...
                     </a>
                     <ul ngbDropdownMenu>
@@ -63,7 +63,8 @@
                           class="btn btn-primary btn-sm dropdown-item"
                         >
                           <fa-icon icon="pencil-alt"></fa-icon>
-                          <span class="d-none d-md-inline">Edit</span>
+                          <span class="d-none d-md-inline"
+                                jhiTranslate="tagManagement.tableOptions.editButton">Edit</span>
                         </button>
                       </li>
 
@@ -74,7 +75,8 @@
                           class="btn btn-danger btn-sm dropdown-item"
                         >
                           <fa-icon icon="times"></fa-icon>
-                          <span class="d-none d-md-inline">Delete</span>
+                          <span class="d-none d-md-inline"
+                                jhiTranslate="tagManagement.tableOptions.deleteButton">Delete</span>
                         </button>
                       </li>
                     </ul>

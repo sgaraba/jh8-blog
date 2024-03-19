@@ -24,11 +24,11 @@ const blogEntryManagementRoute: Routes = [
       defaultSort: 'id,asc',
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../'
         },
         {
-          label: 'Entry List',
+          label: 'routes.blogEntry.blogEntries',
           url: ''
         }
       ]
@@ -43,15 +43,15 @@ const blogEntryManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../../'
         },
         {
-          label: 'Blog entries',
+          label: 'routes.blogEntry.blogEntries',
           url: '../../'
         },
         {
-          label: 'Blog view',
+          label: 'routes.blogEntry.view',
           url: ''
         }
       ]

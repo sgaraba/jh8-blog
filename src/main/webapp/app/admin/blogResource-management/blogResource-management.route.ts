@@ -23,11 +23,11 @@ const blogResourceManagementRoute: Routes = [
       defaultSort: 'id,asc',
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../'
         },
         {
-          label: 'Blogs',
+          label: 'routes.blog.blogs',
           url: ''
         }
       ]
@@ -43,15 +43,15 @@ const blogResourceManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../../'
         },
         {
-          label: 'Blogs',
+          label: 'routes.blog.blogs',
           url: '../../'
         },
         {
-          label: 'Blog view',
+          label: 'routes.blog.view',
           url: ''
         }
       ]
@@ -66,15 +66,15 @@ const blogResourceManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../'
         },
         {
-          label: 'Blogs',
+          label: 'routes.blog.blogs',
           url: '../'
         },
         {
-          label: 'Create blog',
+          label: 'routes.blog.create',
           url: ''
         }
       ]
@@ -89,15 +89,15 @@ const blogResourceManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../../'
         },
         {
-          label: 'Blogs',
+          label: 'routes.blog.blogs',
           url: '../../'
         },
         {
-          label: 'Blog update',
+          label: 'routes.blog.update',
           url: ''
         }
       ]

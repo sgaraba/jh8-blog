@@ -1,0 +1,29 @@
+{
+  "blogManagement": {
+    "home": {
+      "title": "Блоги",
+      "refreshListLabel": "Обновить список",
+      "createLabel": "Создать новый блог",
+      "createOrEditLabel": "Создать или редактировать блог",
+      "paginationOptions": "Пункты на странице"
+    },
+    "tableOptions": {
+      "name": "Название",
+      "handle": "Управляет",
+      "user": "Пользователь",
+      "editButton": "Редактировать",
+      "deleteButton": "Удалить",
+      "cancelButton": "Отмена",
+      "saveButton": "Сохранить",
+      "blogEntries": "Записи",
+      "addPost": "Добавить запись"
+    },
+    "confirmDelete": "Подтвердите операцию",
+    "deleteBanner": "Вы уверены что хотите удалить блог с названием",
+    "details": {
+      "title": "Блог"
+    },
+    "errorLengthMessage": "Это поле не может быть длиннее 20 символов."
+  }
+}
+

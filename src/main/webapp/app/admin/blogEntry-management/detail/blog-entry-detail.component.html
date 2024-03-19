@@ -1,7 +1,7 @@
 <div class="justify-content-center container">
   <div class="row">
     <div class="col">
-      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'"
+      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#533F03'"
                                  [lastLinkColor]="'#000'"
                                  [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
     </div>
@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col">
       <h2>
-        <span>Blog-entry</span>
+        <span jhiTranslate="blogEntriesManagement.details.title">Blog-entry</span>
       </h2>
 
       @if (blogEntry) {
@@ -18,16 +18,16 @@
             <dt><span>Id</span></dt>
             <dd>{{ blogEntry.id }}</dd>
 
-            <dt><span>Title</span></dt>
+            <dt><span jhiTranslate="blogEntriesManagement.tableOptions.title">Title</span></dt>
             <dd>{{ blogEntry.title }}</dd>
 
-            <dt><span>Content</span></dt>
+            <dt><span jhiTranslate="blogEntriesManagement.tableOptions.content">Content</span></dt>
             <dd>{{ blogEntry.content }}</dd>
 
-            <dt><span>Blog</span></dt>
+            <dt><span jhiTranslate="blogEntriesManagement.tableOptions.blog">Blog</span></dt>
             <dd>{{ blogEntry.blog?.name }}</dd>
 
-            <dt><span>Tags</span></dt>
+            <dt><span jhiTranslate="blogEntriesManagement.tableOptions.tags">Tags</span></dt>
             <dd>
               <ng-container *ngIf="blogEntry.tags && blogEntry.tags.length > 0; else noTags">
                     <span *ngFor="let tag of blogEntry.tags; let i = index">
@@ -38,7 +38,7 @@
               <ng-template #noTags>null</ng-template>
             </dd>
 
-            <dt><span>Date</span></dt>
+            <dt><span jhiTranslate="blogEntriesManagement.tableOptions.date">Date</span></dt>
             <dd>{{ blogEntry.date }}</dd>
           </dl>
 

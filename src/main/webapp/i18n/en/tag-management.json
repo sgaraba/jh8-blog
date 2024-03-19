@@ -1,0 +1,26 @@
+{
+  "tagManagement": {
+    "home": {
+      "title": "Tags",
+      "refreshListLabel": "Refresh list",
+      "createLabel": "Create new tag",
+      "createOrEditLabel": "Create or edit tags",
+      "paginationOptions": "Items per page"
+    },
+    "tableOptions": {
+      "name": "Name",
+      "editButton": "Edit",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel",
+      "saveButton": "Save",
+      "tagEntries": "Entries"
+    },
+    "confirmDelete": "Confirm operation",
+    "deleteBanner": "Are you sure you want to delete tag",
+    "details": {
+      "title": "Tag"
+    },
+    "errorLengthMessage": "This field cannot be longer than 20 characters.",
+    "tagsPlaceholder": "Select tag"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "routes": {
+    "home": "Home",
+    "blog": {
+      "blogs": "Blogs",
+      "view": "Blog view",
+      "create": "Create blog",
+      "update": "Update blog"
+    },
+    "tag": {
+      "tags": "Tags",
+      "view": "Tag view",
+      "create": "Create tag",
+      "update": "Update tag"
+    },
+    "blogEntry": {
+      "blogEntries": "Blog-Entries",
+      "view": "Blog entry view"
+    }
+  }
+}

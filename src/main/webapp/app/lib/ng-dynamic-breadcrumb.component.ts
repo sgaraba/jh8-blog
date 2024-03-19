@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, PRIMARY_OUTLET, Router, RouterLink } fro
 import { NgDynamicBreadcrumbService } from './ng-dynamic-breadcrumb.service';
 import { filter, map } from 'rxjs/operators';
 import { NgForOf, NgIf, NgStyle } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'jhi-ng-dynamic-breadcrumb',
@@ -12,7 +13,8 @@ import { NgForOf, NgIf, NgStyle } from '@angular/common';
     NgStyle,
     RouterLink,
     NgForOf,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   templateUrl: './ng-dynamic-breadcrumb.component.html',
   styleUrl: './ng-dynamic-breadcrumb.component.scss'

@@ -1,7 +1,7 @@
 <div class="justify-content-center">
   <div class="row">
     <div class="col">
-      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'"
+      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#533F03'"
                                  [lastLinkColor]="'#000'"
                                  [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
     </div>
@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col">
       <h2>
-        <span>Tag</span>
+        <span jhiTranslate="tagManagement.details.title">Tag</span>
       </h2>
 
       @if (tag) {
@@ -19,16 +19,14 @@
             <dt><span>Id</span></dt>
             <dd>{{ tag.id }}</dd>
 
-            <dt><span>Name</span></dt>
+            <dt><span jhiTranslate="tagManagement.tableOptions.name">Name</span></dt>
             <dd>{{ tag.name }}</dd>
 
-            <dt><span>Entries</span></dt>
+            <dt><span jhiTranslate="tagManagement.tableOptions.tagEntries">Entries</span></dt>
             <dd>{{ tag.entries }}</dd>
           </dl>
-
         </div>
       }
     </div>
   </div>
-
 </div>

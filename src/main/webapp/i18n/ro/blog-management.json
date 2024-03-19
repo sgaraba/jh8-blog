@@ -1,0 +1,28 @@
+{
+  "blogManagement": {
+    "home": {
+      "title": "Bloguri",
+      "refreshListLabel": "Actualizați lista",
+      "createLabel": "Creare blog nou",
+      "createOrEditLabel": "Adăugarea sau editare blog",
+      "paginationOptions": "Articole pe pagină"
+    },
+    "tableOptions": {
+      "name": "Denumire",
+      "handle": "Conduce",
+      "user": "Utilizator",
+      "editButton": "Editează",
+      "deleteButton": "Șterge",
+      "cancelButton": "Anulare",
+      "saveButton": "Salvare",
+      "blogEntries": "Intrări",
+      "addPost": "Adaugă postare"
+    },
+    "confirmDelete": "Confirmați operațiunea",
+    "deleteBanner": "Sunteți sigur că doriți să ștergeți blogul cu nume",
+    "details": {
+      "title": "Blog"
+    },
+    "errorLengthMessage": "Acest câmp nu poate fi mai lung de 20 caractere."
+  }
+}

@@ -23,11 +23,11 @@ const blogManagementRoute: Routes = [
       defaultSort: 'id,asc',
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../'
         },
         {
-          label: 'Tags',
+          label: 'routes.tag.tags',
           url: ''
         }
       ]
@@ -42,15 +42,15 @@ const blogManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../../'
         },
         {
-          label: 'Tags',
+          label: 'routes.tag.tags',
           url: '../../'
         },
         {
-          label: 'Tag view',
+          label: 'routes.tag.view',
           url: ''
         }
       ]
@@ -66,15 +66,15 @@ const blogManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../'
         },
         {
-          label: 'Tags',
+          label: 'routes.tag.tags',
           url: '../'
         },
         {
-          label: 'New Tag',
+          label: 'routes.tag.create',
           url: ''
         }
       ]
@@ -89,15 +89,15 @@ const blogManagementRoute: Routes = [
     data: {
       breadcrumb: [
         {
-          label: 'Home',
+          label: 'routes.home',
           url: '../../../../'
         },
         {
-          label: 'Tags',
+          label: 'routes.tag.tags',
           url: '../../'
         },
         {
-          label: 'Update Tag',
+          label: 'routes.tag.update',
           url: ''
         }
       ]

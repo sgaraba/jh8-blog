@@ -1,0 +1,26 @@
+{
+  "tagManagement": {
+    "home": {
+      "title": "Tags",
+      "refreshListLabel": "Actualizați lista",
+      "createLabel": "Creare tag nou",
+      "createOrEditLabel": "Creare sau editare tag",
+      "paginationOptions": "Articole pe pagină"
+    },
+    "tableOptions": {
+      "name": "Denumire",
+      "editButton": "Editează",
+      "deleteButton": "Șterge",
+      "cancelButton": "Anulare",
+      "saveButton": "Salvare",
+      "tagEntries": "Intrări"
+    },
+    "confirmDelete": "Confirmați operațiunea",
+    "deleteBanner": "Sunteți sigur că doriți să ștergeți eticheta",
+    "details": {
+      "title": "Tag"
+    },
+    "errorLengthMessage": "Acest câmp nu poate fi mai lung de 20 caractere.",
+    "tagsPlaceholder": "Selectați etichete"
+  }
+}

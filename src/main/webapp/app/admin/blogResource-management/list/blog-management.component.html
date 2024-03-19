@@ -1,22 +1,20 @@
 <div>
 
-  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+  <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#533F03'" [lastLinkColor]="'#000'"
                              [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
 
   <h2>
-    <span id="tag-management-page-heading">Blogs</span>
-
+    <span id="tag-management-page-heading" jhiTranslate="blogManagement.home.title">Blogs</span>
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span>Refresh list</span>
+        <span jhiTranslate="blogManagement.home.refreshListLabel">Refresh list</span>
       </button>
       <button class="btn btn-primary jh-create-entity" [routerLink]="['./new']">
         <fa-icon icon="plus"></fa-icon>
-        <span> Create new blog</span>
+        <span jhiTranslate="blogManagement.home.createLabel">Create new blog</span>
       </button>
-
-      <label for="itemsPerPageSelect">Items per page:</label>
+      <label for="itemsPerPageSelect" jhiTranslate="blogManagement.home.paginationOptions">Items per page:</label>
       <select id="itemsPerPageSelect" (change)="updatePageSize()" [ngModel]="itemsPerPage">
         <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
       </select>
@@ -24,7 +22,6 @@
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
-
   <jhi-alert></jhi-alert>
 
   @if (blogs) {
@@ -32,13 +29,13 @@
       <table class="table table-striped" aria-describedby="tag-management-page-heading">
         <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="transition()">
-          <th scope="col" jhiSortBy="name"><span>Name</span>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="blogManagement.tableOptions.name">Name</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="name"><span>Handle</span>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="blogManagement.tableOptions.handle">Handle</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="name"><span>User</span>
+          <th scope="col" jhiSortBy="name"><span jhiTranslate="blogManagement.tableOptions.user">User</span>
             <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
@@ -59,7 +56,7 @@
                     ngbDropdown
                     display="dynamic"
                   >
-                    <a ngbDropdownToggle>
+                    <a ngbDropdownToggle class="aSimple">
                       ...
                     </a>
                     <div>
@@ -72,7 +69,8 @@
                             class="btn btn-primary btn-sm dropdown-item"
                           >
                             <fa-icon icon="pencil-alt"></fa-icon>
-                            <span class="d-none d-md-inline">Edit</span>
+                            <span class="d-none d-md-inline"
+                                  jhiTranslate="blogManagement.tableOptions.editButton">Edit</span>
                           </button>
                         </li>
                         <li>
@@ -82,7 +80,8 @@
                             class="btn btn-danger btn-sm dropdown-item"
                           >
                             <fa-icon icon="times"></fa-icon>
-                            <span class="d-none d-md-inline">Delete</span>
+                            <span class="d-none d-md-inline"
+                                  jhiTranslate="blogManagement.tableOptions.deleteButton">Delete</span>
                           </button>
                         </li>
                       </ul>

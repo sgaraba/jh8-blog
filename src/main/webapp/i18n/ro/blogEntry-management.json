@@ -1,0 +1,29 @@
+{
+  "blogEntriesManagement": {
+    "home": {
+      "title": "Intrări pe blog",
+      "refreshListLabel": "Actualizați lista",
+      "createLabel": "Creare tag nou",
+      "createOrEditLabel": "Adăugarea intrării noi pe blog",
+      "paginationOptions": "Articole pe pagină"
+    },
+    "tableOptions": {
+      "title": "Titlu",
+      "content": "Conținut",
+      "date": "Data",
+      "blog": "Blog",
+      "tags": "Tags",
+      "editButton": "Editează",
+      "deleteButton": "Șterge",
+      "cancelButton": "Anulare",
+      "saveButton": "Salvare",
+      "tagEntries": "Intrări"
+    },
+    "confirmDelete": "Confirmați operațiunea",
+    "deleteBanner": "Sunteți sigur că doriți să ștergeți eticheta",
+    "details": {
+      "title": "Intrare pe blog"
+    },
+    "errorLengthMessage": "Acest câmp nu poate fi mai lung de 20 caractere."
+  }
+}

@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col">
-      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#0275d8'" [lastLinkColor]="'#000'"
+      <jhi-ng-dynamic-breadcrumb [fontSize]="'18px'" [fontColor]="'#533F03'" [lastLinkColor]="'#000'"
                                  [symbol]="'/'"></jhi-ng-dynamic-breadcrumb>
     </div>
   </div>
@@ -10,29 +10,27 @@
   <div class="row">
     <div class="col">
       <h2>
-        <span>Blog</span>
+        <span jhiTranslate="blogManagement.details.title">Blog</span>
       </h2>
-
-
       @if (blog) {
 
         <dl class="row-md jh-entity-details">
           <dt><span>Id</span></dt>
           <dd>{{ blog.id }}</dd>
 
-          <dt><span>Name</span></dt>
+          <dt><span jhiTranslate="blogManagement.tableOptions.name">Name</span></dt>
           <dd>{{ blog.name }}</dd>
 
-          <dt><span>Entries</span></dt>
+          <dt><span jhiTranslate="blogManagement.tableOptions.blogEntries">Entries</span></dt>
           <dd>{{ blog.handle }}</dd>
 
-          <dt><span>User</span></dt>
+          <dt><span jhiTranslate="blogManagement.tableOptions.user">User</span></dt>
           <dd>{{ blog.user?.login }}</dd>
         </dl>
         <div class="row-md d-flex justify-content-end">
           <button type="button" class="btn btn-info align-content-end" (click)="createBlogEntry(blog)">
             <fa-icon icon="plus"></fa-icon>
-            <span class="px-2">Adaugă postare</span>
+            <span class="px-2" jhiTranslate="blogManagement.tableOptions.addPost">Adaugă postare</span>
           </button>
         </div>
 

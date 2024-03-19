@@ -1,0 +1,27 @@
+{
+  "tagManagement": {
+    "home": {
+      "title": "Теги",
+      "refreshListLabel": "Обновить список",
+      "createLabel": "Создать новый тег",
+      "createOrEditLabel": "Создать или редактировать тег",
+      "paginationOptions": "Пункты на странице"
+    },
+    "tableOptions": {
+      "name": "Название",
+      "editButton": "Редактировать",
+      "deleteButton": "Удалить",
+      "cancelButton": "Отмена",
+      "saveButton": "Сохранить",
+      "tagEntries": "Записи"
+    },
+    "confirmDelete": "Подтвердите операцию",
+    "deleteBanner": "Вы уверены что хотите удалить тег",
+    "details": {
+      "title": "Тег"
+    },
+    "errorLengthMessage": "Это поле не может быть длиннее 20 символов.",
+    "tagsPlaceholder": "Выберите теги"
+  }
+}
+

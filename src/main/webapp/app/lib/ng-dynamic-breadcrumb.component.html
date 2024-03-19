@@ -2,8 +2,8 @@
   <span *ngFor="let item of breadcrumb; let i = index">
       <li [ngStyle]="{'font-size': fontSize}">
           <a *ngIf="item?.url" [routerLink]="item?.url" [queryParams]="item?.queryParams"
-             [ngStyle]="{'color': fontColor}">{{ item.label }}</a>
-          <span *ngIf="!item?.url" [ngStyle]="{'color': lastLinkColor}">{{ item.label }}</span>
+             [ngStyle]="{'color': fontColor}"><span>{{ item.label | translate }}</span></a>
+        <span *ngIf="!item?.url" [ngStyle]="{'color': lastLinkColor}"><span>{{ item.label | translate }}</span></span>
           <span class="line" *ngIf="breadcrumb.length !== i+1">{{ symbol }}</span>
       </li>
   </span>

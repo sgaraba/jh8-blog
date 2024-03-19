@@ -1,0 +1,30 @@
+{
+  "blogEntriesManagement": {
+    "home": {
+      "title": "Записи в блоге",
+      "refreshListLabel": "Обновить список",
+      "createLabel": "Создать новый тег",
+      "createOrEditLabel": "Добавить новую запись в блоге",
+      "paginationOptions": "Пункты на странице"
+    },
+    "tableOptions": {
+      "title": "Название",
+      "content": "Содержание",
+      "date": "Дата",
+      "blog": "Блог",
+      "tags": "Tеги",
+      "editButton": "Редактировать",
+      "deleteButton": "Удалить",
+      "cancelButton": "Отмена",
+      "saveButton": "Сохранить",
+      "tagEntries": "Записи"
+    },
+    "confirmDelete": "Подтвердите операцию",
+    "deleteBanner": "Вы уверены что хотите удалить тег",
+    "details": {
+      "title": "Запись в блоге"
+    },
+    "errorLengthMessage": "Это поле не может быть длиннее 20 символов."
+  }
+}
+

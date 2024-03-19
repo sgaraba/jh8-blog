@@ -1,0 +1,22 @@
+{
+  "routes": {
+    "home": "Acasă",
+    "blog": {
+      "blogs": "Bloguri",
+      "view": "Vizualizarea blogului",
+      "create": "Creare blog",
+      "update": "Modifică blog"
+    },
+    "tag": {
+      "tags": "Taguri",
+      "view": "Vizualizarea tagului",
+      "create": "Creare tag",
+      "update": "Modifică tag"
+    },
+    "blogEntry": {
+      "blogEntries": "Intrări pe blog",
+      "view": "Vizualizare intrare pe blog"
+    }
+  }
+}
+

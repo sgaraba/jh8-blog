@@ -1,0 +1,29 @@
+{
+  "blogEntriesManagement": {
+    "home": {
+      "title": "Blog-Entries",
+      "refreshListLabel": "Refresh list",
+      "createLabel": "Create new tag",
+      "createOrEditLabel": "Add new blog entry",
+      "paginationOptions": "Items per page"
+    },
+    "tableOptions": {
+      "title": "Title",
+      "content": "Content",
+      "date": "Date",
+      "blog": "Blog",
+      "tags": "Tags",
+      "editButton": "Edit",
+      "deleteButton": "Delete",
+      "cancelButton": "Cancel",
+      "saveButton": "Save",
+      "tagEntries": "Entries"
+    },
+    "confirmDelete": "Confirm operation",
+    "deleteBanner": "Are you sure you want to delete blog-entry with title",
+    "details": {
+      "title": "Blog-entry"
+    },
+    "errorLengthMessage": "This field cannot be longer than 20 characters."
+  }
+}

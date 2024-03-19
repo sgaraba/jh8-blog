@@ -10,18 +10,15 @@ const routes: Routes = [
   },
   {
     path: 'tag-management',
-    loadChildren: () => import('./blog-management/blog-management.route'),
-    title: 'blogManagement.home.title'
+    loadChildren: () => import('./blog-management/blog-management.route')
   },
   {
     path: 'blog-management',
-    loadChildren: () => import('./blogResource-management/blogResource-management.route'),
-    title: 'blogResourceManagement.home.title'
+    loadChildren: () => import('./blogResource-management/blogResource-management.route')
   },
   {
     path: 'blog-entry-management',
-    loadChildren: () => import('./blogEntry-management/blogEntry-management.route'),
-    title: 'blogEntriesResourceManagement.home.title'
+    loadChildren: () => import('./blogEntry-management/blogEntry-management.route')
   },
   {
     path: 'docs',
