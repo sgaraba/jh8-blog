@@ -1,0 +1,21 @@
+.custom-bread-crumb {
+  padding: 10px 16px;
+  list-style: none;
+}
+
+.custom-bread-crumb li {
+  display: inline;
+}
+
+.custom-bread-crumb .line {
+  padding-right: 3px;
+}
+
+.custom-bread-crumb li a {
+  text-decoration: none;
+}
+
+.custom-bread-crumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}

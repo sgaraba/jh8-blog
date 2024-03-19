@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center p-5">
+  <div class="col-8">
+    <form name="createForm" (ngSubmit)="save()" [formGroup]="createForm">
+      <h2>Add new blog entry</h2>
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input class="form-control" formControlName="title" name="title" type="text">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input class="form-control" formControlName="content" name="content" type="text">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Tag</label>
+        <ng-select
+          class="custom"
+          [items]="tags"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="Select tags"
+          [multiple]="true"
+          formControlName="tags"
+        >
+        </ng-select>
+      </div>
+
+      <button class="btn btn-secondary" type="button" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>
+        <span>Anulare</span>
+      </button>
+
+      <button [disabled]="createForm.invalid || isSaving" class="btn btn-primary" type="submit">
+        <fa-icon icon="save"></fa-icon>
+        <span>Salvare</span>
+      </button>
+    </form>
+  </div>
+</div>

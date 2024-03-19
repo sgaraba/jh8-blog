@@ -8,12 +8,15 @@ import FindLanguageFromKeyPipe from './language/find-language-from-key.pipe';
 import TranslateDirective from './language/translate.directive';
 import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
+import { RouterModule } from '@angular/router';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 /**
  * Application wide Module
  */
 @NgModule({
-  imports: [AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective],
+  imports: [AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective, RouterModule, NgSelectModule, FormsModule],
   exports: [
     CommonModule,
     NgbModule,
@@ -23,6 +26,8 @@ import { AlertErrorComponent } from './alert/alert-error.component';
     TranslateModule,
     FindLanguageFromKeyPipe,
     TranslateDirective,
-  ],
+    RouterModule
+  ]
 })
-export default class SharedModule {}
+export default class SharedModule {
+}

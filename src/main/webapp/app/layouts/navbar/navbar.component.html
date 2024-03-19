@@ -36,14 +36,35 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu" data-cy="entity">
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu"
+               data-cy="entity">
               <span>
                 <fa-icon icon="th-list"></fa-icon>
                 <span jhiTranslate="global.menu.entities.main">Entități</span>
               </span>
             </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-              <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
+              <li>
+                <a class="dropdown-item" routerLink="/admin/tag-management" routerLinkActive="active"
+                   (click)="collapseNavbar()">
+                  <fa-icon icon="tag" [fixedWidth]="true"></fa-icon>
+                  <span>Tags</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/admin/blog-management" routerLinkActive="active"
+                   (click)="collapseNavbar()">
+                  <fa-icon icon="file" [fixedWidth]="true"></fa-icon>
+                  <span>Blog</span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/admin/blog-entry-management" routerLinkActive="active"
+                   (click)="collapseNavbar()">
+                  <fa-icon icon="list" [fixedWidth]="true"></fa-icon>
+                  <span>Blog Entries</span>
+                </a>
+              </li>
             </ul>
           </li>
         }
@@ -55,7 +76,8 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu" data-cy="adminMenu">
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu"
+             data-cy="adminMenu">
             <span>
               <fa-icon icon="users-cog"></fa-icon>
               <span jhiTranslate="global.menu.admin.main">Administrare</span>
@@ -63,7 +85,8 @@
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
             <li>
-              <a class="dropdown-item" routerLink="/admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
+              <a class="dropdown-item" routerLink="/admin/user-management" routerLinkActive="active"
+                 (click)="collapseNavbar()">
                 <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.admin.userManagement">Gestiune utilizatori</span>
               </a>
@@ -81,7 +104,8 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/admin/configuration" routerLinkActive="active" (click)="collapseNavbar()">
+              <a class="dropdown-item" routerLink="/admin/configuration" routerLinkActive="active"
+                 (click)="collapseNavbar()">
                 <fa-icon icon="cogs" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.admin.configuration">Configurare</span>
               </a>
@@ -111,29 +135,6 @@
             }
           </ul>
         </li>
-        @if (languages && languages.length > 1) {
-          <li ngbDropdown class="nav-item dropdown pointer" display="dynamic">
-            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
-              <span>
-                <fa-icon icon="flag"></fa-icon>
-                <span jhiTranslate="global.menu.language">Limbă</span>
-              </span>
-            </a>
-            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
-              @for (language of languages; track $index) {
-                <li>
-                  <a
-                    class="dropdown-item"
-                    [jhiActiveMenu]="language"
-                    href="javascript:void(0);"
-                    (click)="changeLanguage(language); collapseNavbar()"
-                    >{{ language | findLanguageFromKey }}</a
-                  >
-                </li>
-              }
-            </ul>
-          </li>
-        }
         <li
           ngbDropdown
           class="nav-item dropdown pointer"
@@ -141,15 +142,27 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
-            @if (!account?.imageUrl) {
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu"
+             data-cy="accountMenu">
+            @if (account) {
               <span>
-                <fa-icon icon="user"></fa-icon>
-                <span jhiTranslate="global.menu.account.main">Cont</span>
+                @if (account!.imageUrl) {
+                  <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />
+                } @else {
+                  <fa-icon icon="user"></fa-icon>
+                }
+                <span>
+                  @if (account!.firstName && account!.lastName) {
+                    {{ account!.firstName }} {{ account!.lastName }}
+                  } @else {
+                    {{ account!.login }}
+                  }
+                </span>
               </span>
             } @else {
               <span>
-                <img [src]="account!.imageUrl" class="profile-image rounded-circle" alt="Avatar" />
+                <fa-icon icon="user"></fa-icon>
+                <span>Cont</span>
               </span>
             }
           </a>
@@ -207,6 +220,29 @@
             }
           </ul>
         </li>
+        @if (languages && languages.length > 1) {
+          <li ngbDropdown class="nav-item dropdown pointer" display="dynamic">
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);"
+               id="languagesnavBarDropdown">
+              <span>
+                {{ this.translateService.store.currentLang.toUpperCase() }}
+              </span>
+            </a>
+            <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
+              @for (language of languages; track $index) {
+                <li>
+                  <a
+                    class="dropdown-item"
+                    [jhiActiveMenu]="language"
+                    href="javascript:void(0);"
+                    (click)="changeLanguage(language); collapseNavbar()"
+                  >{{ language | findLanguageFromKey }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </li>
+        }
       </ul>
     </div>
   </div>
