@@ -13,34 +13,42 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'home.title',
+    data: {
+      breadcrumb: [
+        {
+          label: 'routes.home',
+          url: ''
+        }
+      ]
+    }
   },
   {
     path: '',
     component: NavbarComponent,
-    outlet: 'navbar',
+    outlet: 'navbar'
   },
   {
     path: 'admin',
     data: {
-      authorities: [Authority.ADMIN],
+      authorities: [Authority.ADMIN]
     },
     canActivate: [UserRouteAccessService],
-    loadChildren: () => import('./admin/admin.routes'),
+    loadChildren: () => import('./admin/admin.routes')
   },
   {
     path: 'account',
-    loadChildren: () => import('./account/account.route'),
+    loadChildren: () => import('./account/account.route')
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: 'login.title',
+    title: 'login.title'
   },
   {
     path: '',
-    loadChildren: () => import(`./entities/entity.routes`),
+    loadChildren: () => import(`./entities/entity.routes`)
   },
-  ...errorRoute,
+  ...errorRoute
 ];
 
 export default routes;
