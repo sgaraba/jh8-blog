@@ -33,7 +33,7 @@ export class SupersetService {
       'resources': [
         {
           'type': 'dashboard',
-          'id': '629075f0-537b-4f73-bfa5-caf9213ee7cc'
+          'id': '3f9f4d89-4a8d-4d22-bc44-be6cd804fe02'
         }
       ],
       'rls': [{ 'clause': 'stage_of_development = \'Pre-clinical\'' }],
@@ -72,7 +72,7 @@ export class SupersetService {
       this.getGuestToken().subscribe(
         (token) => {
           embedDashboard({
-            id: '629075f0-537b-4f73-bfa5-caf9213ee7cc', // Replace with your dashboard ID
+            id: '3f9f4d89-4a8d-4d22-bc44-be6cd804fe02', // Replace with your dashboard ID
             supersetDomain: 'http://localhost:8088',
             mountPoint: document.getElementById('dashboard')!,
             fetchGuestToken: () => token['token'],

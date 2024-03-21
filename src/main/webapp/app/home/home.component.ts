@@ -34,7 +34,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.account = account));
-    this.embedSupersetDashboard();
+    //this.embedSupersetDashboard();
   }
 
   embedSupersetDashboard(): void {
