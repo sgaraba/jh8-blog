@@ -1,0 +1,9 @@
+entity Client {
+    firstName String,
+    lastName String,
+    email String,
+    telephone String
+}
+
+filter Client
+paginate Client with infinite-scroll
