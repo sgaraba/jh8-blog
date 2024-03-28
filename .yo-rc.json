@@ -16,7 +16,7 @@
     "enableHibernateCache": false,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
-    "entities": ["User", "Blog", "BlogEntry", "Tag"],
+    "entities": ["Client", "User", "Blog", "BlogEntry", "Tag"],
     "feignClient": false,
     "gradleEnterpriseHost": null,
     "jhipsterVersion": "8.1.0",

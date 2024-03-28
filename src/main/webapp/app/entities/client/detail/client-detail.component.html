@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (client) {
+      <div>
+        <h2 data-cy="clientDetailsHeading"><span jhiTranslate="jh8App.client.detail.title">Client</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ client.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="jh8App.client.firstName">First Name</span></dt>
+          <dd>
+            <span>{{ client.firstName }}</span>
+          </dd>
+          <dt><span jhiTranslate="jh8App.client.lastName">Last Name</span></dt>
+          <dd>
+            <span>{{ client.lastName }}</span>
+          </dd>
+          <dt><span jhiTranslate="jh8App.client.email">Email</span></dt>
+          <dd>
+            <span>{{ client.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="jh8App.client.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ client.telephone }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Înapoi</span>
+        </button>
+
+        <button type="button" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editare</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
